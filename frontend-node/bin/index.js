@@ -1,23 +1,3 @@
-/*
- * Copyright (c) 2023 Prabhav Mehra <<url>>
- * 
- * Created Date: Tuesday, September 26th 2023, 9:29:38 pm
- * Author: Prabhav Mehra
- * 
- * Copyright © 2023 Telepsych.AI Pty Ltd. All rights reserved.
- * This code is the property of Telepsych.AI Pty Ltd and is protected by the
- * Copyright Act 1968 (Cth) and its amendments. Unauthorized reproduction
- * or distribution of this code, or any portion thereof, is strictly prohibited.
- * 
- * For inquiries regarding the use or licensing of this code, please contact
- * Telepsych.AI Pty Ltd at the following address:  
- * 
- * Telepsych.AI Pty Ltd South Yarra Melbourne, VIC, 3141 Australia Email:
- * telepsychaus@gmail.com
- * 
- * Thank you for respecting our intellectual property rights.
- */
-
 const axios = require("axios");
 const readline = require("readline");
 
