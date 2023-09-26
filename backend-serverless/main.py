@@ -14,7 +14,11 @@ logging.basicConfig(
 
 logger = logging.getLogger(__name__)
 
+"""
+Creates an issue based on id, title, description.
 
+Returns/Logs an error if any
+"""
 def create(event, context):
     request_body = json.loads(event.get("body"))
 
@@ -83,6 +87,11 @@ def create(event, context):
         }
 
 
+"""
+Reads an issue based on id and logs the Issue object
+
+Returns/Logs an error if any
+"""
 def read(event, context):
     id = event['pathParameters']['id']
 
@@ -143,6 +152,11 @@ def read(event, context):
         }
 
 
+"""
+Updates an issue based on id, title, description and logs the updated Issue object
+
+Returns/Logs an error if any
+"""
 def update(event, context):
     request_body = json.loads(event.get("body"))
 
@@ -212,6 +226,11 @@ def update(event, context):
         }
 
 
+"""
+Delete an issue based on id and logs the delete Issue id
+
+Returns/Logs an error if any
+"""
 def delete(event, context):
     id = event['pathParameters']['id']
 
