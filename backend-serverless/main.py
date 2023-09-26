@@ -32,11 +32,21 @@ def create(event, context):
             'description': {'S': description},
         }
 
-        dynamodb_client.put_item(
+        response = dynamodb_client.put_item(
             TableName='Issues',
             Item=item, ReturnConsumedCapacity='TOTAL')
 
-        logger.info(f"Reques to create issue: {json.dumps(item)}")
+        description = item['description']['S']
+        id_value = item['id']['S']
+        title = item['title']['S']
+
+        item_response = {
+            'id': id_value,
+            'title': title,
+            'description': description
+        }
+
+        logger.info(f"Reques to create issue: {json.dumps(item_response)}")
 
         return {
             'statusCode': 200,
@@ -45,7 +55,7 @@ def create(event, context):
                 "Access-Control-Allow-Headers": "Content-Type",
                 "Access-Control-Allow-Credentials": True,
             },
-            'body': json.dumps({"Message": "Issue created successfully", "item": item})
+            'body': json.dumps({"Message": "Issue created successfully", "item": item_response})
         }
 
     except ClientError as e:
@@ -74,9 +84,7 @@ def create(event, context):
 
 
 def read(event, context):
-    request_body = json.loads(event.get("body"))
-    # request_body = event.get("body")
-    id = request_body.get('id', "")
+    id = event['pathParameters']['id']
 
     try:
         dynamodb_client = boto3.client("dynamodb", region_name="us-west-2")
@@ -102,7 +110,7 @@ def read(event, context):
             'description': description
         }
 
-        logger.info(f"Reques to read issue with id: {id}")
+        logger.info(f"Request to read issue with id: {id}")
         return {
             'statusCode': 200,
             "headers": {
@@ -110,7 +118,7 @@ def read(event, context):
                 "Access-Control-Allow-Headers": "Content-Type",
                 "Access-Control-Allow-Credentials": True,
             },
-            'body': json.dumps({"Message": "Issue created successfully", "item": item})
+            'body': json.dumps({"Message": "Issue fetched successfully", "item": item})
         }
 
     except ClientError as e:
@@ -171,7 +179,7 @@ def update(event, context):
             UpdateExpression="SET #title = :title, #description = :description",
             ReturnValues='ALL_NEW')
 
-        logger.info(f"Reques to update issue: {json.dumps(item)}")
+        logger.info(f"Request to update issue: {json.dumps(item)}")
 
         return {
             'statusCode': 200,
@@ -180,7 +188,7 @@ def update(event, context):
                 "Access-Control-Allow-Headers": "Content-Type",
                 "Access-Control-Allow-Credentials": True,
             },
-            'body': json.dumps({"Message": "Issue created successfully", "item": item})
+            'body': json.dumps({"Message": "Issue updated successfully", "item": item})
         }
 
     except ClientError as e:

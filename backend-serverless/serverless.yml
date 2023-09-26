@@ -34,8 +34,8 @@ functions:
         handler: main.read
         events:
             - http:
-                  path: /read
-                  method: get
+                  path: /read/{id}
+                  method: GET
                   cors:
                       origin: "*" # <-- Specify allowed origin
                       headers: # <-- Specify allowed headers
