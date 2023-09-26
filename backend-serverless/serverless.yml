@@ -1,0 +1,80 @@
+service: serverless-issues
+
+org: sitemate
+
+package:
+    excludeDevDependencies: true
+    exclude:
+        - "env/**"
+
+provider:
+    name: aws
+    runtime: python3.9
+    region: us-west-2
+    timeout: 60
+
+functions:
+    create:
+        handler: main.create
+        events:
+            - http:
+                  path: /create
+                  method: post
+                  cors:
+                      origin: "*" # <-- Specify allowed origin
+                      headers: # <-- Specify allowed headers
+                          - Content-Type
+                          - X-Amz-Date
+                          - Authorization
+                          - X-Api-Key
+                          - X-Amz-Security-Token
+                          - X-Amz-User-Agent
+                      allowCredentials: false
+    read:
+        handler: main.read
+        events:
+            - http:
+                  path: /read
+                  method: get
+                  cors:
+                      origin: "*" # <-- Specify allowed origin
+                      headers: # <-- Specify allowed headers
+                          - Content-Type
+                          - X-Amz-Date
+                          - Authorization
+                          - X-Api-Key
+                          - X-Amz-Security-Token
+                          - X-Amz-User-Agent
+                      allowCredentials: false
+    update:
+        handler: main.update
+        events:
+            - http:
+                  path: /update
+                  method: put
+                  cors:
+                      origin: "*" # <-- Specify allowed origin
+                      headers: # <-- Specify allowed headers
+                          - Content-Type
+                          - X-Amz-Date
+                          - Authorization
+                          - X-Api-Key
+                          - X-Amz-Security-Token
+                          - X-Amz-User-Agent
+                      allowCredentials: false
+    delete:
+        handler: main.delete
+        events:
+            - http:
+                  path: /delete
+                  method: delete
+                  cors:
+                      origin: "*" # <-- Specify allowed origin
+                      headers: # <-- Specify allowed headers
+                          - Content-Type
+                          - X-Amz-Date
+                          - Authorization
+                          - X-Api-Key
+                          - X-Amz-Security-Token
+                          - X-Amz-User-Agent
+                      allowCredentials: false
