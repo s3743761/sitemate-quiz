@@ -180,7 +180,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/serverless-issues/dev/1695726719420-2023-09-26T11:11:59.420Z/serverless-issues.zip"
+          "S3Key": "serverless/serverless-issues/dev/1695727538699-2023-09-26T11:25:38.699Z/serverless-issues.zip"
         },
         "Handler": "main.create",
         "Runtime": "python3.9",
@@ -205,7 +205,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/serverless-issues/dev/1695726719420-2023-09-26T11:11:59.420Z/serverless-issues.zip"
+          "S3Key": "serverless/serverless-issues/dev/1695727538699-2023-09-26T11:25:38.699Z/serverless-issues.zip"
         },
         "Handler": "main.read",
         "Runtime": "python3.9",
@@ -230,7 +230,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/serverless-issues/dev/1695726719420-2023-09-26T11:11:59.420Z/serverless-issues.zip"
+          "S3Key": "serverless/serverless-issues/dev/1695727538699-2023-09-26T11:25:38.699Z/serverless-issues.zip"
         },
         "Handler": "main.update",
         "Runtime": "python3.9",
@@ -255,7 +255,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/serverless-issues/dev/1695726719420-2023-09-26T11:11:59.420Z/serverless-issues.zip"
+          "S3Key": "serverless/serverless-issues/dev/1695727538699-2023-09-26T11:25:38.699Z/serverless-issues.zip"
         },
         "Handler": "main.delete",
         "Runtime": "python3.9",
@@ -273,44 +273,44 @@
         "DeleteLogGroup"
       ]
     },
-    "CreateLambdaVersioniMfU0zjqkSddKYUKiKaaVIKLUItx5LMYRG6e8RvxM": {
+    "CreateLambdaVersionM5oh2zDNRaddBnInM2QJvmTgHFEaCRiDO7C4iJdEA": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "CreateLambdaFunction"
         },
-        "CodeSha256": "k5T+IbcqkHw5EveR7J6tfwmMjebtuH/sZnowDGIvGKg="
+        "CodeSha256": "eJnD6o5Q1n0bf6NZErVh1QLKFYjLN4CaoOdaWKRDAuc="
       }
     },
-    "ReadLambdaVersion6HaZXMIYnd4E6jcm6gKt9hmzkfajh2ViphFGE529Q": {
+    "ReadLambdaVersionVhsO3MfghuXx54nsYJ3XcH9UwojMvvH9i07yr3nmePw": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ReadLambdaFunction"
         },
-        "CodeSha256": "k5T+IbcqkHw5EveR7J6tfwmMjebtuH/sZnowDGIvGKg="
+        "CodeSha256": "eJnD6o5Q1n0bf6NZErVh1QLKFYjLN4CaoOdaWKRDAuc="
       }
     },
-    "UpdateLambdaVersion4hMQPHgnFaTChYYu7iUFj5VBuzD6XCWgUT7XkKnnFD8": {
+    "UpdateLambdaVersionmZuO4DHdBXt9pSXFSZYNOEkRfg0YL7p2FzrE7o5DE": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "UpdateLambdaFunction"
         },
-        "CodeSha256": "k5T+IbcqkHw5EveR7J6tfwmMjebtuH/sZnowDGIvGKg="
+        "CodeSha256": "eJnD6o5Q1n0bf6NZErVh1QLKFYjLN4CaoOdaWKRDAuc="
       }
     },
-    "DeleteLambdaVersionR3URoUfKz2xpGeNBpQFgaRLYtTxVlF7nFHBUIh0JU": {
+    "DeleteLambdaVersionlG6ECZy8inghJqj7Gjh5eK2TFjNyFBeV5icI0cYw": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "DeleteLambdaFunction"
         },
-        "CodeSha256": "k5T+IbcqkHw5EveR7J6tfwmMjebtuH/sZnowDGIvGKg="
+        "CodeSha256": "eJnD6o5Q1n0bf6NZErVh1QLKFYjLN4CaoOdaWKRDAuc="
       }
     },
     "ApiGatewayRestApi": {
@@ -392,6 +392,18 @@
           ]
         },
         "PathPart": "delete",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayResourceDeleteIdVar": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Ref": "ApiGatewayResourceDelete"
+        },
+        "PathPart": "{id}",
         "RestApiId": {
           "Ref": "ApiGatewayRestApi"
         }
@@ -532,7 +544,7 @@
         }
       }
     },
-    "ApiGatewayMethodDeleteOptions": {
+    "ApiGatewayMethodDeleteIdVarOptions": {
       "Type": "AWS::ApiGateway::Method",
       "Properties": {
         "AuthorizationType": "NONE",
@@ -570,7 +582,7 @@
           ]
         },
         "ResourceId": {
-          "Ref": "ApiGatewayResourceDelete"
+          "Ref": "ApiGatewayResourceDeleteIdVar"
         },
         "RestApiId": {
           "Ref": "ApiGatewayRestApi"
@@ -715,13 +727,13 @@
         "UpdateLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayMethodDeleteDelete": {
+    "ApiGatewayMethodDeleteIdVarDelete": {
       "Type": "AWS::ApiGateway::Method",
       "Properties": {
         "HttpMethod": "DELETE",
         "RequestParameters": {},
         "ResourceId": {
-          "Ref": "ApiGatewayResourceDelete"
+          "Ref": "ApiGatewayResourceDeleteIdVar"
         },
         "RestApiId": {
           "Ref": "ApiGatewayRestApi"
@@ -761,7 +773,7 @@
         "DeleteLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1695726718517": {
+    "ApiGatewayDeployment1695727537740": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -773,11 +785,11 @@
         "ApiGatewayMethodCreateOptions",
         "ApiGatewayMethodReadIdVarOptions",
         "ApiGatewayMethodUpdateOptions",
-        "ApiGatewayMethodDeleteOptions",
+        "ApiGatewayMethodDeleteIdVarOptions",
         "ApiGatewayMethodCreatePost",
         "ApiGatewayMethodReadIdVarGet",
         "ApiGatewayMethodUpdatePut",
-        "ApiGatewayMethodDeleteDelete"
+        "ApiGatewayMethodDeleteIdVarDelete"
       ]
     },
     "CreateLambdaPermissionApiGateway": {
@@ -941,7 +953,7 @@
     "CreateLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "CreateLambdaVersioniMfU0zjqkSddKYUKiKaaVIKLUItx5LMYRG6e8RvxM"
+        "Ref": "CreateLambdaVersionM5oh2zDNRaddBnInM2QJvmTgHFEaCRiDO7C4iJdEA"
       },
       "Export": {
         "Name": "sls-serverless-issues-dev-CreateLambdaFunctionQualifiedArn"
@@ -950,7 +962,7 @@
     "ReadLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ReadLambdaVersion6HaZXMIYnd4E6jcm6gKt9hmzkfajh2ViphFGE529Q"
+        "Ref": "ReadLambdaVersionVhsO3MfghuXx54nsYJ3XcH9UwojMvvH9i07yr3nmePw"
       },
       "Export": {
         "Name": "sls-serverless-issues-dev-ReadLambdaFunctionQualifiedArn"
@@ -959,7 +971,7 @@
     "UpdateLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "UpdateLambdaVersion4hMQPHgnFaTChYYu7iUFj5VBuzD6XCWgUT7XkKnnFD8"
+        "Ref": "UpdateLambdaVersionmZuO4DHdBXt9pSXFSZYNOEkRfg0YL7p2FzrE7o5DE"
       },
       "Export": {
         "Name": "sls-serverless-issues-dev-UpdateLambdaFunctionQualifiedArn"
@@ -968,7 +980,7 @@
     "DeleteLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "DeleteLambdaVersionR3URoUfKz2xpGeNBpQFgaRLYtTxVlF7nFHBUIh0JU"
+        "Ref": "DeleteLambdaVersionlG6ECZy8inghJqj7Gjh5eK2TFjNyFBeV5icI0cYw"
       },
       "Export": {
         "Name": "sls-serverless-issues-dev-DeleteLambdaFunctionQualifiedArn"

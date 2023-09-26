@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 
 def create(event, context):
     request_body = json.loads(event.get("body"))
-    # request_body = event.get("body")
+
     id = request_body.get('id', "")
     title = request_body.get('title', "")
     description = request_body.get('description', "")
@@ -89,8 +89,6 @@ def read(event, context):
     try:
         dynamodb_client = boto3.client("dynamodb", region_name="us-west-2")
 
-        # Create an item to add to the table
-
         response = dynamodb_client.get_item(
             Key={
                 'id': {'S': id}
@@ -98,7 +96,6 @@ def read(event, context):
             TableName="Issues"
         )
 
-        # print(response['Item'])
         item = response['Item']
         description = item['description']['S']
         id_value = item['id']['S']
@@ -148,7 +145,7 @@ def read(event, context):
 
 def update(event, context):
     request_body = json.loads(event.get("body"))
-    # request_body = event.get("body")
+
     id = request_body.get('id', "")
     title = request_body.get('title', "")
     description = request_body.get('description', "")
@@ -156,7 +153,6 @@ def update(event, context):
     try:
         dynamodb_client = boto3.client("dynamodb", region_name="us-west-2")
 
-        # Create an item to add to the table
         item = {
             'id': id,
             'title': title,
@@ -217,14 +213,11 @@ def update(event, context):
 
 
 def delete(event, context):
-    request_body = json.loads(event.get("body"))
-    # request_body = event.get("body")
-    id = request_body.get('id', "")
+    id = event['pathParameters']['id']
 
     try:
         dynamodb_client = boto3.client("dynamodb", region_name="us-west-2")
 
-        # Create an item to add to the table
         dynamodb_client.delete_item(
             TableName="Issues",
             Key={
@@ -267,22 +260,3 @@ def delete(event, context):
             },
             'body': json.dumps(f'Unexpected error: {str(e)}')
         }
-
-
-if __name__ == "__main__":
-    # create({'body': {
-    #     "id": "123",
-    #     "title": "client@email2.com",
-    #     "description": "client@email2.com"
-    # }}, "")
-    # read({'body': {
-    #     "id": "123",
-    # }}, "")
-    # update({'body': {
-    #     "id": "123",
-    #     "title": "updated@email2.com",
-    #     "description": "updated123@email22.com"
-    # }}, "")
-    delete({'body': {
-        "id": "123",
-    }}, "")
